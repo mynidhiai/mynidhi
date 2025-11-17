@@ -100,23 +100,6 @@ document.querySelectorAll('.info-grid article, .architecture-grid article, .why-
     animateOnScroll.observe(el);
 });
 
-// Parallax effect for hero section
-let lastScrollY = 0;
-const hero = document.querySelector('.hero');
-
-function updateParallax() {
-    const scrollY = window.scrollY;
-    if (hero && scrollY < window.innerHeight) {
-        const parallaxValue = scrollY * 0.5;
-        hero.style.transform = `translateY(${parallaxValue}px)`;
-        hero.style.opacity = 1 - scrollY / window.innerHeight * 0.5;
-    }
-    lastScrollY = scrollY;
-}
-
-window.addEventListener('scroll', () => {
-    updateParallax();
-}, { passive: true });
 
 // Cursor trail effect (optional, can be disabled for performance)
 let cursorTrail = [];
