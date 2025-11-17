@@ -1,42 +1,5 @@
 // Modern website features and enhancements
 
-// Loading Screen Handler
-(function() {
-    const loader = document.getElementById('loader');
-    const body = document.body;
-    
-    if (!loader) return;
-    
-    // Add loading class to body
-    body.classList.add('loading');
-    
-    // Simulate minimum loading time for better UX (800ms)
-    const minLoadTime = 800;
-    const startTime = performance.now();
-    
-    function hideLoader() {
-        const elapsed = performance.now() - startTime;
-        const remaining = Math.max(0, minLoadTime - elapsed);
-        
-        setTimeout(() => {
-            loader.classList.add('hidden');
-            body.classList.remove('loading');
-            
-            // Remove from DOM after animation
-            setTimeout(() => {
-                loader.remove();
-            }, 600);
-        }, remaining);
-    }
-    
-    // Check if page is already loaded
-    if (document.readyState === 'complete') {
-        hideLoader();
-    } else {
-        window.addEventListener('load', hideLoader, { once: true });
-    }
-})();
-
 // Handle mobile navigation toggle
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
@@ -137,16 +100,11 @@ document.querySelectorAll('.info-grid article, .architecture-grid article, .why-
     animateOnScroll.observe(el);
 });
 
-// Parallax effect for hero section (only after loader is gone)
+// Parallax effect for hero section
 let lastScrollY = 0;
 const hero = document.querySelector('.hero');
 
 function updateParallax() {
-    // Don't run parallax if loader is still visible
-    if (document.getElementById('loader') && !document.getElementById('loader').classList.contains('hidden')) {
-        return;
-    }
-    
     const scrollY = window.scrollY;
     if (hero && scrollY < window.innerHeight) {
         const parallaxValue = scrollY * 0.5;
