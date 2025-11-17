@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyNidhi – India’s Modern Algorithmic Trading Platform</title>
-    <meta name="description" content="MyNidhi is India’s modern AI-powered algorithmic trading platform that helps traders automate, backtest, and execute strategies with precision." />
+    <title>MyNidhi – Simplest Algorithmic Trading Platform</title>
+    <meta name="description" content="MyNidhi is Simplest AI-powered algorithmic trading platform that helps traders automate, backtest, and execute strategies with precision." />
     <meta name="keywords" content="MyNidhi, algorithmic trading, AI trading, India trading platform, backtesting, fintech" />
-    <meta property="og:title" content="MyNidhi – India’s Modern Algorithmic Trading Platform" />
+    <meta property="og:title" content="MyNidhi – Simplest Algorithmic Trading Platform" />
     <meta property="og:description" content="Automate. Backtest. Trade Smarter. Explore MyNidhi's AI-powered modules for data, strategy, backtests, and execution." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mynidhi.in" />
@@ -15,36 +15,14 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loader-wrapper" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">
-                <div class="logo-container">
-                    <img src="assets/logo.svg" alt="MyNidhi logo" class="knot-logo loader-path" />
-                </div>
-            </div>
-            <div class="loader-text">
-                <span class="loader-brand">MyNidhi</span>
-                <p class="loader-tagline">Loading the future of trading...</p>
-            </div>
-            <div class="loader-progress">
-                <div class="loader-progress-bar"></div>
-            </div>
-            <div class="loader-particles">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-
+    <!-- Floating Stock Names and Indicators Background -->
+    <div class="stocks-container" id="stocksContainer"></div>
+    
     <!-- Primary navigation -->
     <header class="site-header" id="top">
         <div class="brand">
-            <div class="logo-mark" aria-hidden="true">
-                <img src="assets/logo.svg" alt="MyNidhi logo" class="knot-logo" />
+            <div class="logo-mark">
+                <img src="assets/JustLogo.png" alt="MyNidhi logo" class="logo-icon" />
             </div>
             <span class="brand-name">MyNidhi</span>
         </div>
@@ -444,5 +422,148 @@
     </footer>
 
     <script src="script.js" defer></script>
+    <script>
+        // Floating stock names and indicators background
+        (function() {
+            // Wait for DOM to be ready
+            function initFloatingStocks() {
+                const container = document.getElementById('stocksContainer');
+                if (!container) {
+                    // Retry if container not found yet
+                    setTimeout(initFloatingStocks, 100);
+                    return;
+                }
+
+                // Stock names (Indian stocks) - expanded list
+                const stockNames = [
+                    'RELIANCE', 'TATA MOTORS', 'INFY', 'TCS', 'HDFC BANK', 
+                    'ICICI BANK', 'BHARTI AIRTEL', 'WIPRO', 'ASIAN PAINTS', 
+                    'ITC', 'SBI', 'LT', 'MARUTI', 'BAJAJ FINANCE', 'AXIS BANK',
+                    'NESTLE', 'HINDALCO', 'ULTRACEMCO', 'JSW STEEL', 'TATA STEEL',
+                    'ONGC', 'SUN PHARMA', 'POWER GRID', 'NTPC', 'INDUSIND BANK',
+                    'HDFC LIFE', 'TATA CONSULTANCY', 'COAL INDIA', 'BPCL', 'HCL TECH',
+                    'HERO MOTOCORP', 'EICHER MOTORS', 'DABUR', 'DR REDDY', 'GRASIM',
+                    'M&M', 'BRITANNIA', 'KOTAK BANK', 'ADANI PORTS', 'BAJAJ AUTO'
+                ];
+
+                // Technical indicators and trading terms - expanded list
+                const indicators = [
+                    'RSI', 'MACD', 'BB', 'EMA', 'SMA', 'ADX', 'STOCH', 'CCI',
+                    'ATR', 'OBV', 'VWAP', 'BOLLINGER', 'MOVING AVG', 'VOLUME',
+                    'TREND LINE', 'SUPPORT', 'RESISTANCE', 'FIBONACCI', 'PIVOT',
+                    'STOCHASTIC', 'MOMENTUM', 'WILLIAMS %R', 'ROC', 'MFI',
+                    'PARABOLIC SAR', 'ICHIMOKU', 'ADX', 'AROON', 'BALANCE VOLUME',
+                    'TREND FOLLOWING', 'MEAN REVERSION', 'BREAKOUT', 'REVERSAL',
+                    'CHART PATTERN', 'CANDLESTICK', 'TECHNICAL ANALYSIS', 'BACKTEST'
+                ];
+
+                // Combine both arrays for unified handling
+                const allElements = [
+                    ...stockNames.map(name => ({ text: name, type: 'stock' })),
+                    ...indicators.map(ind => ({ text: ind, type: 'indicator' }))
+                ];
+
+                // Available bounce animations (stay within screen)
+                const bounceAnimations = [
+                    'bounceHorizontal',
+                    'bounceVertical',
+                    'bounceDiagonal1',
+                    'bounceDiagonal2',
+                    'bounceCircular',
+                    'bounceWave'
+                ];
+
+                // Function to check if position is in safe zone (avoid main content area)
+                function isInSafeZone(x, y) {
+                    // Define safe zones where floating elements should not appear
+                    // Center area (hero section) - approximately 20% to 80% horizontally, 15% to 60% vertically
+                    const centerXMin = 20;
+                    const centerXMax = 80;
+                    const centerYMin = 15;
+                    const centerYMax = 60;
+                    
+                    // Check if position is in the center content area
+                    if (x >= centerXMin && x <= centerXMax && y >= centerYMin && y <= centerYMax) {
+                        return false; // In content area, not safe
+                    }
+                    return true; // Safe to place element
+                }
+                
+                // Create all elements with bounce animations, avoiding main content area
+                let attempts = 0;
+                allElements.forEach((item, index) => {
+                    const element = document.createElement('div');
+                    element.className = item.type === 'stock' ? 'floating-stock' : 'floating-indicator';
+                    element.textContent = item.text;
+                    
+                    // Try to find a safe position (avoid hero/main content area)
+                    let x, y;
+                    let safePositionFound = false;
+                    
+                    // Try up to 20 times to find a safe position
+                    for (let i = 0; i < 20; i++) {
+                        x = Math.random() * 100;
+                        y = Math.random() * 100;
+                        
+                        if (isInSafeZone(x, y)) {
+                            safePositionFound = true;
+                            break;
+                        }
+                    }
+                    
+                    // If no safe position found after attempts, place in safe zones (top, bottom, or sides)
+                    if (!safePositionFound) {
+                        // Place in safe zones: top (< 15%), bottom (> 60%), left (< 20%), or right (> 80%)
+                        const zone = Math.random();
+                        if (zone < 0.25) {
+                            // Top zone
+                            x = Math.random() * 100;
+                            y = Math.random() * 12;
+                        } else if (zone < 0.5) {
+                            // Bottom zone
+                            x = Math.random() * 100;
+                            y = Math.random() * 35 + 65;
+                        } else if (zone < 0.75) {
+                            // Left zone
+                            x = Math.random() * 15;
+                            y = Math.random() * 100;
+                        } else {
+                            // Right zone
+                            x = Math.random() * 15 + 85;
+                            y = Math.random() * 100;
+                        }
+                    }
+                    
+                    element.style.left = x + '%';
+                    element.style.top = y + '%';
+                    
+                    // Random font size
+                    element.style.fontSize = (Math.random() * 0.7 + 0.6) + 'rem';
+                    
+                    // Random bounce animation
+                    const randomAnimation = bounceAnimations[Math.floor(Math.random() * bounceAnimations.length)];
+                    element.style.animationName = randomAnimation;
+                    
+                    // Slow animation - 60-120 seconds duration
+                    element.style.animationDuration = (Math.random() * 60 + 60) + 's';
+                    element.style.animationDelay = (Math.random() * 10) + 's';
+                    element.style.animationTimingFunction = 'ease-in-out';
+                    element.style.animationIterationCount = 'infinite';
+                    
+                    container.appendChild(element);
+                });
+                
+                // Debug: Log to console
+                console.log('Floating stocks created:', container.children.length);
+            }
+
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initFloatingStocks);
+            } else {
+                initFloatingStocks();
+            }
+        })();
+    </script>
 </body>
 </html>
