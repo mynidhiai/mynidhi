@@ -83,7 +83,7 @@ a:hover {
 main {
     width: min(1200px, 95%);
     margin: 0 auto;
-    padding-top: 120px;
+    padding-top: 90px;
     padding-bottom: 4rem;
     position: relative;
     z-index: 2;
@@ -137,8 +137,8 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem clamp(1.25rem, 4vw, 3rem);
-    min-height: 80px;
+    padding: 0.625rem clamp(1.25rem, 4vw, 3rem);
+    min-height: 55px;
     gap: 2rem;
     position: relative;
     z-index: 1;
