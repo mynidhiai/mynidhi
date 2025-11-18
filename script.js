@@ -141,8 +141,8 @@ if (tableRegion) {
     });
 }
 
-// Add ripple effect to buttons
-document.querySelectorAll('.primary-btn, .ghost-btn').forEach(button => {
+// Add ripple effect to buttons (only for primary buttons)
+document.querySelectorAll('.primary-btn').forEach(button => {
     button.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
