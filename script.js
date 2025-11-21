@@ -332,3 +332,33 @@ console.log('%cThe future of trading is almost here. Join the waitlist!', 'color
         formMessage.textContent = '';
     }
 })();
+
+// About Section Tabs
+document.addEventListener('DOMContentLoaded', () => {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    if (tabBtns.length > 0 && tabPanes.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                tabBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                // Add active class to clicked button
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                // Show corresponding pane
+                const tabId = btn.getAttribute('data-tab');
+                const targetPane = document.getElementById(tabId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+            });
+        });
+    }
+});
