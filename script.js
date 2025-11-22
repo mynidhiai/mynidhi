@@ -124,6 +124,17 @@ document.addEventListener('mousemove', (e) => {
     }
 }, { passive: true });
 
+// Bento Grid Hover Effect
+document.querySelectorAll('.bento-item').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    });
+});
+
 // Set copyright year
 const yearEl = document.getElementById('year');
 if (yearEl) {
@@ -143,20 +154,20 @@ if (tableRegion) {
 
 // Add ripple effect to buttons (only for primary buttons)
 document.querySelectorAll('.primary-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function (e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-        
+
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
-        
+
         this.appendChild(ripple);
-        
+
         setTimeout(() => {
             ripple.remove();
         }, 600);
@@ -194,13 +205,13 @@ console.log('%c🚀 MyNidhi', 'font-size: 20px; font-weight: bold; color: #2DD4B
 console.log('%cThe future of trading is almost here. Join the waitlist!', 'color: #38BDF8;');
 
 // Google Forms Submission Handler
-(function() {
+(function () {
     // Your Google Form ID (extracted from your form URL)
     const GOOGLE_FORM_ID = '1FAIpQLSchkG7CEUnSDcj5vezjasCh5zmJhl3ZKFzQ-pJ8l2qYxM9aTQ';
-    
+
     // Form action URL
     const FORM_ACTION = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
-    
+
     // IMPORTANT: You need to find your entry field names
     // To find them: Open your Google Form → Right-click → Inspect → Look for name="entry.XXXXXXX"
     // Replace these with your actual field names
@@ -229,12 +240,12 @@ console.log('%cThe future of trading is almost here. Join the waitlist!', 'color
 
     const hiddenIframe = createHiddenIframe();
 
-    waitlistForm.addEventListener('submit', async function(e) {
+    waitlistForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
-        
+
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
 
@@ -317,9 +328,9 @@ console.log('%cThe future of trading is almost here. Join the waitlist!', 'color
         formMessage.textContent = message;
         formMessage.className = `form-message form-message-${type}`;
         formMessage.style.display = 'block';
-        
+
         formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
+
         if (type === 'success') {
             setTimeout(() => {
                 hideMessage();

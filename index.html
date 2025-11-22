@@ -87,90 +87,131 @@
             <div class="hero-preview">
                 <div class="preview-card glass-panel">
                     <div class="card-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                        <div class="header-title">System Initialization</div>
+                        <div class="window-controls">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="header-title">
+                            <span class="status-dot blink"></span>
+                            mynidhi_core_v1.0 // system_monitor
+                        </div>
+                        <div class="header-actions">
+                            <span class="badge-pill small">LIVE</span>
+                        </div>
                     </div>
                     <div class="card-body pipeline-body">
+                        <div class="grid-overlay"></div>
                         <div class="pipeline-container">
-                            <!-- Stage 1: Data -->
+                            <!-- Stage 1: Data Ingestion -->
                             <div class="pipeline-stage">
-                                <div class="stage-card">
-                                    <div class="stage-icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                                        </svg>
+                                <div class="stage-card glow-border">
+                                    <div class="stage-header">
+                                        <span class="stage-id">01</span>
+                                        <div class="stage-icon">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path
+                                                    d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5m18 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5m18 0h-3m-12 0H3m6 0h6" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                    <div class="stage-info">
-                                        <span class="stage-name">Market Data</span>
-                                        <span class="stage-status">Connected</span>
+                                    <div class="stage-content">
+                                        <span class="stage-name">Data Feed</span>
+                                        <div class="metric-row">
+                                            <span class="metric-label">NSE/BSE</span>
+                                            <span class="metric-value text-teal">Connected</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span class="metric-label">Latency</span>
+                                            <span class="metric-value">12ms</span>
+                                        </div>
                                     </div>
-                                    <div class="stage-loader">
-                                        <div class="loader-bar" style="animation-delay: 0s;"></div>
+                                    <div class="stage-loader active">
+                                        <div class="loader-bar"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Arrow -->
-                            <div class="pipeline-arrow">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
+                            <!-- Connector -->
+                            <div class="pipeline-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-dot"></div>
                             </div>
 
-                            <!-- Stage 2: Strategy -->
+                            <!-- Stage 2: Strategy Engine -->
                             <div class="pipeline-stage">
-                                <div class="stage-card">
-                                    <div class="stage-icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                            <path d="M9 9h6M9 13h6M9 17h4" />
-                                        </svg>
+                                <div class="stage-card glow-border">
+                                    <div class="stage-header">
+                                        <span class="stage-id">02</span>
+                                        <div class="stage-icon">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                    <div class="stage-info">
-                                        <span class="stage-name">Strategy Engine</span>
-                                        <span class="stage-status">Processing</span>
+                                    <div class="stage-content">
+                                        <span class="stage-name">Strategy Core</span>
+                                        <div class="metric-row">
+                                            <span class="metric-label">Status</span>
+                                            <span class="metric-value text-primary">Running</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span class="metric-label">Signals</span>
+                                            <span class="metric-value">24/sec</span>
+                                        </div>
                                     </div>
-                                    <div class="stage-loader">
-                                        <div class="loader-bar" style="animation-delay: 0.5s;"></div>
+                                    <div class="stage-loader active delay-1">
+                                        <div class="loader-bar"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Arrow -->
-                            <div class="pipeline-arrow">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
+                            <!-- Connector -->
+                            <div class="pipeline-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-dot delay-1"></div>
                             </div>
 
                             <!-- Stage 3: Execution -->
                             <div class="pipeline-stage">
-                                <div class="stage-card">
-                                    <div class="stage-icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                                        </svg>
+                                <div class="stage-card glow-border">
+                                    <div class="stage-header">
+                                        <span class="stage-id">03</span>
+                                        <div class="stage-icon">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                    <div class="stage-info">
-                                        <span class="stage-name">Order Execution</span>
-                                        <span class="stage-status">Ready</span>
+                                    <div class="stage-content">
+                                        <span class="stage-name">Execution</span>
+                                        <div class="metric-row">
+                                            <span class="metric-label">Orders</span>
+                                            <span class="metric-value text-accent">Active</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span class="metric-label">Fill Rate</span>
+                                            <span class="metric-value">99.8%</span>
+                                        </div>
                                     </div>
-                                    <div class="stage-loader">
-                                        <div class="loader-bar" style="animation-delay: 1s;"></div>
+                                    <div class="stage-loader active delay-2">
+                                        <div class="loader-bar"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="pipeline-footer">
-                            <span class="system-msg">> All systems operational. Ready to trade.</span>
+                        <div class="terminal-footer">
+                            <div class="terminal-line">
+                                <span class="prompt">></span> <span class="cmd">init_sequence_complete</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">></span> <span class="cmd">monitoring_active_trades...</span> <span
+                                    class="cursor">_</span>
+                            </div>
                         </div>
                     </div>
                 </div>
